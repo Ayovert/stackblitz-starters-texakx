@@ -75,3 +75,23 @@ body {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+.hide {
+  display: none;
+}
+
+.open{
+  height: 100vh;
+}
+
+.maxIcon{
+  cursor: pointer;
+  float: right;
+}
+
+.maxIcon:hover{
+  
+  color: #cdbbcf;
+}
+
+

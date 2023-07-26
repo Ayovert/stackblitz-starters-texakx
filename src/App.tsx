@@ -1,22 +1,44 @@
 import { faFreeCodeCamp } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import * as React from 'react';
+import { useState } from 'react';
+import {
+  faDownLeftAndUpRightToCenter,
+  faMaximize,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { sampleText } from './data';
 import './style.css';
+import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
+import { openDiv } from './util';
 
 export default function App() {
-  const [text, setText] = React.useState({ sampleText }.sampleText);
+  const [text, setText] = useState({ sampleText }.sampleText);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openPreview, setOpenPreview] = useState(false);
+
   return (
     <div id="wrapper">
-      <div id="editorDiv">
+      <div
+        id="editorDiv"
+        //style={{ height: openEdit ? '100vh' : 'auto' }}
+        className={openEdit ? 'open' : openPreview ? 'hide' : ''}
+      >
         <div id="editorLabel">
           <FontAwesomeIcon
             icon={faFreeCodeCamp}
             style={{ margin: '0 10px 0 5px' }}
           />
           <span>Editor</span>
+
+          <FontAwesomeIcon
+            icon={openEdit ? faDownLeftAndUpRightToCenter : faMaximize}
+            id="maxEditor"
+            className="maxIcon"
+            onClick={(e) => setOpenEdit(!openEdit)}
+          />
         </div>
 
         <textarea
@@ -26,19 +48,34 @@ export default function App() {
           cols={50}
           value={text}
           onChange={(e) => setText(e.target.value)}
+          // style={{ height: open ? '100vh' : 'auto' }}
         ></textarea>
       </div>
 
-      <div id="previewDiv">
+      <div
+        id="previewDiv"
+        className={openPreview ? 'open' : openEdit ? 'hide' : ''}
+      >
         <div id="editorLabel">
           <FontAwesomeIcon
             icon={faFreeCodeCamp}
             style={{ margin: '0 10px 0 5px' }}
           />
+
           <span>Preview</span>
+
+          <FontAwesomeIcon
+            icon={openPreview ? faDownLeftAndUpRightToCenter : faMaximize}
+            id="maxPreview"
+            className="maxIcon"
+            onClick={() => setOpenPreview(!openPreview)}
+          />
         </div>
 
-        <div id="preview">
+        <div
+          id="preview"
+          //style={{ height: open ? '100vh' : 'auto' }}
+        >
           <ReactMarkdown children={text} remarkPlugins={[remarkGfm]} />
         </div>
       </div>
