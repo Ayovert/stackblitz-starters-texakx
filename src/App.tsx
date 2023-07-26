@@ -1,15 +1,23 @@
+import { faFreeCodeCamp } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
+import remarkGfm from 'remark-gfm';
 import { sampleText } from './data';
 import './style.css';
 
 export default function App() {
   const [text, setText] = React.useState({ sampleText }.sampleText);
   return (
-    <div>
-      <div>
-        <label htmlFor="editor">Editor</label>
+    <div id="wrapper">
+      <div id="editorDiv">
+        <div id="editorLabel">
+          <FontAwesomeIcon
+            icon={faFreeCodeCamp}
+            style={{ margin: '0 10px 0 5px' }}
+          />
+          <span>Editor</span>
+        </div>
 
         <textarea
           id="editor"
@@ -19,9 +27,19 @@ export default function App() {
           value={text}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
+      </div>
+
+      <div id="previewDiv">
+        <div id="editorLabel">
+          <FontAwesomeIcon
+            icon={faFreeCodeCamp}
+            style={{ margin: '0 10px 0 5px' }}
+          />
+          <span>Preview</span>
+        </div>
 
         <div id="preview">
-          <ReactMarkdown remarkPlugins={[gfm]}>{text}</ReactMarkdown>
+          <ReactMarkdown children={text} remarkPlugins={[remarkGfm]} />
         </div>
       </div>
     </div>

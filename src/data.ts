@@ -26,7 +26,7 @@ There's also [links](https://www.freecodecamp.org), and
 
 And if you want to get really crazy, even tables:
 
-Wild Header | Crazy Header | Another Header?
+| Wild Header | Crazy Header | Another Header?
 ------------ | ------------- | -------------
 Your content can | be here, and it | can be here....
 And here. | Okay. | I think we get it.
