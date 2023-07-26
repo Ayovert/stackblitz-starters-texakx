@@ -11,8 +11,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { sampleText } from './data';
 import './style.css';
-import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
-import { openDiv } from './util';
 
 export default function App() {
   const [text, setText] = useState({ sampleText }.sampleText);
@@ -23,7 +21,6 @@ export default function App() {
     <div id="wrapper">
       <div
         id="editorDiv"
-        //style={{ height: openEdit ? '100vh' : 'auto' }}
         className={openEdit ? 'open' : openPreview ? 'hide' : ''}
       >
         <div id="editorLabel">
@@ -37,7 +34,7 @@ export default function App() {
             icon={openEdit ? faDownLeftAndUpRightToCenter : faMaximize}
             id="maxEditor"
             className="maxIcon"
-            onClick={(e) => setOpenEdit(!openEdit)}
+            onClick={() => setOpenEdit(!openEdit)}
           />
         </div>
 
